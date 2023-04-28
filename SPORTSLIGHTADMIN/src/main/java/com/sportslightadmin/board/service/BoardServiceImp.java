@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sportslightadmin.board.dao.BoardDAO;
 import com.sportslightadmin.board.dto.BoardDTO;
-import com.sportslightadmin.board.dto.PageDTO;
+import com.sportslightadmin.board.dto.BoardPageDTO;
 
 
 @Service
@@ -31,7 +31,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> listProcess(PageDTO pv) {
+	public List<BoardDTO> listProcess(BoardPageDTO pv) {
 		
 		return boardDao.list(pv);
 	}

@@ -6,14 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.sportslightadmin.board.dto.BoardDTO;
-import com.sportslightadmin.board.dto.PageDTO;
+import com.sportslightadmin.board.dto.BoardPageDTO;
 
 
 @Mapper
 @Repository
 public interface BoardDAO {
 	public int count();
-	public List<BoardDTO> list(PageDTO pv);
+	public List<BoardDTO> list(BoardPageDTO pv);
 	public void readCount(int num);
 	public BoardDTO content(int num);
 	public void reStepCount(BoardDTO dto);

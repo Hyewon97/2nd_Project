@@ -32,7 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sportslightadmin.board.dto.BoardDTO;
-import com.sportslightadmin.board.dto.PageDTO;
+import com.sportslightadmin.board.dto.BoardPageDTO;
 import com.sportslightadmin.board.service.BoardService;
 import com.sportslightadmin.common.file.FileUpload;
 
@@ -53,7 +53,7 @@ public class BoardController {
 	private String filePath;
 
 	@Autowired
-	private PageDTO pdto;
+	private BoardPageDTO pdto;
 
 	private int currentPage;
 
@@ -63,7 +63,7 @@ public class BoardController {
 	// http://localhost:8090/board/list/1
 
 	@GetMapping("/board/list/{currentPage}") // 페이지를 호출할 때,
-	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, PageDTO pv) {
+	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, BoardPageDTO pv) {
 		Map<String, Object> map = new HashMap<>(); // 뭐가 같으면? 생성할 때 안해줘도 된다.
 		System.out.println("pv : " + pv.getCurrentPage()); //currentPage값 출력
 		
@@ -74,7 +74,7 @@ public class BoardController {
 //			else
 //				this.currentPage = pv.getCurrentPage();
 
-			this.pdto = new PageDTO(this.currentPage, totalRecord);
+			this.pdto = new BoardPageDTO(this.currentPage, totalRecord);
 
 			map.put("aList", boardService.listProcess(this.pdto));
 			map.put("pv", this.pdto);
@@ -96,7 +96,7 @@ public class BoardController {
 	// multipart/form-data : @RequestBody 선언 없이 그냥 받음 BoradDTo dto
 
 	@PostMapping("/board/write")
-	public String writeProExcute(BoardDTO dto, PageDTO pv, HttpServletRequest req, HttpSession session) {
+	public String writeProExcute(BoardDTO dto, BoardPageDTO pv, HttpServletRequest req, HttpSession session) {
 		// 1. 첨부파일 처리하기, 현재 멀티파일에 값이 있는지 없는지 확인하기. 첨부파일 유뮤 체크
 		MultipartFile file = dto.getFilename();
 
