@@ -6,6 +6,7 @@ import com.sportslightadmin.common.exception.WrongEmailPasswordException;
 
 @Component
 public class AdminzDTO {
+	private int adminNum;
 	private String adminEmail; // 관리자 이메일
 	private String adminPass; // 관리자 비밀번호
 	private String adminProfile; // 관리자 프로필 닉네임
@@ -15,6 +16,7 @@ public class AdminzDTO {
 
 	}
 
+	
 	public String getAuthRole() {
 		return authRole;
 	}
@@ -24,9 +26,20 @@ public class AdminzDTO {
 	}
 
 	// 게터, 세터
+	
 	public String getAdminEmail() {
 		return adminEmail;
 	}
+
+	public int getAdminNum() {
+		return adminNum;
+	}
+
+
+	public void setAdminNum(int adminNum) {
+		this.adminNum = adminNum;
+	}
+
 
 	public void setAdminEmail(String adminEmail) {
 		this.adminEmail = adminEmail;

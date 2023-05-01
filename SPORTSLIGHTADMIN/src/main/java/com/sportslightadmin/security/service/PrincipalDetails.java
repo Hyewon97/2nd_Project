@@ -52,6 +52,11 @@ public class PrincipalDetails implements UserDetails {
 	public String getUsername() {
 		return adminzDTO.getAdminEmail();
 	}
+//	
+//	@Override
+//	public int getUserNum() {
+//		return adminzDTO.getAdminNum();
+//	}
 
 	// 계정만료 여부 리턴 - true(만료 안됨)
 	@Override

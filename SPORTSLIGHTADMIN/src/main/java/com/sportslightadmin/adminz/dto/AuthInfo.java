@@ -6,6 +6,7 @@ public class AuthInfo {
 	private String adminEmail;
 	private String adminProfile;
 	private String adminPass;
+	//private int adminNum; // 저장소 공사중
 	
 	public AuthInfo() {
 		

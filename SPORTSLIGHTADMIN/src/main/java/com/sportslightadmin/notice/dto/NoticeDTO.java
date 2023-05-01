@@ -16,6 +16,10 @@ public class NoticeDTO {
 	public NoticeDTO() {
 		
 	}
+	
+	public int getAdminNum() {
+		return adminNum;
+	}
 
 	public int getNoticeNum() {
 		return noticeNum;
@@ -23,10 +27,6 @@ public class NoticeDTO {
 
 	public void setNoticeNum(int noticeNum) {
 		this.noticeNum = noticeNum;
-	}
-
-	public int getAdminNum() {
-		return adminNum;
 	}
 
 	public void setAdminNum(int adminNum) {

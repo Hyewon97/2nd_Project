@@ -46,11 +46,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			// 값을 읽어와서 저장을 함(저장 위치 User.class// 아이디, 비번, 게터 세터가 있어야 함).
 			// user 사진 부분 구현임 ppt 11 부분
 			AdminzDTO admin = om.readValue(request.getInputStream(), AdminzDTO.class);
-			System.out.printf("관리자Email : %s 관리자Pass:%s\n", admin.getAdminEmail(), admin.getAdminPass()); // 주석
+			System.out.printf("관리자Email : %s 관리자Pass:%s\n 관리자 고유번호adminNum:%d\n", admin.getAdminEmail(), admin.getAdminPass(), admin.getAdminNum()); // 주석 // 저장소
 
 			// 토큰 생성
 			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-					admin.getAdminEmail(), admin.getAdminPass());
+					admin.getAdminEmail(), admin.getAdminPass() );
 
 			Authentication authentication = authManager.authenticate(authenticationToken);
 			System.out.println("authentication : " + authentication.getPrincipal()); // 주석 토큰 확인?
@@ -78,6 +78,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withClaim("adminProfile", principalDetails.getAdminzDTO().getAdminProfile())// 관리자 이름
 				.withClaim("authRole", principalDetails.getAdminzDTO().getAuthRole()) // 관리자 권한
 				.withClaim("adminEmail", principalDetails.getAdminzDTO().getAdminEmail()) // 관리자 메일
+				.withClaim("adminNum", principalDetails.getAdminzDTO().getAdminNum()) // 관리자 고유 번호 저장소 공사중
 				.sign(Algorithm.HMAC512("mySecurityCos"));
 
 		System.out.println("jwtTOken" + jwtToken); // 주석
@@ -85,10 +86,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		// response 응답 헤더에 jwt 추가해서 보냄
 		response.addHeader("Authorization", "Bearer " + jwtToken);
 
+		// 바디에 값을 저장해서 던져줌
 		final Map<String, Object> body = new HashMap<String, Object>();
 		body.put("adminProfile", principalDetails.getAdminzDTO().getAdminProfile());
 		body.put("adminEmail", principalDetails.getAdminzDTO().getAdminEmail());
 		body.put("authRole", principalDetails.getAdminzDTO().getAuthRole());
+		body.put("adminNum", principalDetails.getAdminzDTO().getAdminNum()); // 저장소 공사중
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getOutputStream(), body);

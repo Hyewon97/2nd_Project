@@ -89,8 +89,9 @@
 		WHERE ref = #{ref} AND re_step > #{re_step}
 	</update>
 
-	<update id="update" parameterType="BoardDTO"> UPDATE board SET subject =
-		#{subject}, content=#{content} <if test="upload!=null">
+	<update id="update" parameterType="BoardDTO"> 
+		UPDATE board SET subject = #{subject}, 
+		content=#{content} <if test="upload!=null">
 			,upload=#{upload}
 		</if> WHERE num=#{num} </update>
 
