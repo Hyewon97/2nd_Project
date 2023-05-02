@@ -78,7 +78,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withClaim("adminProfile", principalDetails.getAdminzDTO().getAdminProfile())// 관리자 이름
 				.withClaim("authRole", principalDetails.getAdminzDTO().getAuthRole()) // 관리자 권한
 				.withClaim("adminEmail", principalDetails.getAdminzDTO().getAdminEmail()) // 관리자 메일
-				.withClaim("adminNum", principalDetails.getAdminzDTO().getAdminNum()) // 관리자 고유 번호 저장소 공사중
+				.withClaim("adminNum", principalDetails.getAdminzDTO().getAdminNum()) // 관리자 고유 번호 저장소 
 				.sign(Algorithm.HMAC512("mySecurityCos"));
 
 		System.out.println("jwtTOken" + jwtToken); // 주석

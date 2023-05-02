@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MembersDTO {
-	private String memberEmail; // 사용자 이메일
-	private String memberPass; // 사용자 비밀번호
-	private String memberProfile; // 사용자 프로필 이름
-	private Date memberReg; // 사용자 가입 일자
-	private char memberLocked; // 사용자 잠금 여부
-	private char memberLeave; // 사용자 탈퇴 여부
+	private String memberEmailt; // 사용자 이메일
+	private String memberPasst; // 사용자 비밀번호
+	private String memberProfilet; // 사용자 프로필 이름
+	private Date memberRegt; // 사용자 가입 일자
+	private char memberLockedt; // 사용자 잠금 여부
+	private char memberLeavet; // 사용자 탈퇴 여부
 	
 
 	public MembersDTO() {
@@ -21,63 +21,66 @@ public class MembersDTO {
 	}
 
 
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
-	}
-
-	public String getMemberPass() {
-		return memberPass;
-	}
-
-	public void setMemberPass(String memberPass) {
-		this.memberPass = memberPass;
+	public String getMemberEmailt() {
+		return memberEmailt;
 	}
 
 
-	public String getMemberProfile() {
-		return memberProfile;
+	public void setMemberEmailt(String memberEmailt) {
+		this.memberEmailt = memberEmailt;
 	}
 
 
-	public void setMemberProfile(String memberProfile) {
-		this.memberProfile = memberProfile;
+	public String getMemberPasst() {
+		return memberPasst;
 	}
 
 
-	public Date getMemberReg() {
-		return memberReg;
+	public void setMemberPasst(String memberPasst) {
+		this.memberPasst = memberPasst;
 	}
 
 
-	public void setMemberReg(Date memberReg) {
-		this.memberReg = memberReg;
+	public String getMemberProfilet() {
+		return memberProfilet;
 	}
 
 
-	public char getMemberLocked() {
-		return memberLocked;
+	public void setMemberProfilet(String memberProfilet) {
+		this.memberProfilet = memberProfilet;
 	}
 
 
-	public void setMemberLocked(char memberLocked) {
-		this.memberLocked = memberLocked;
+	public Date getMemberRegt() {
+		return memberRegt;
 	}
 
 
-	public char getMemberLeave() {
-		return memberLeave;
+	public void setMemberRegt(Date memberRegt) {
+		this.memberRegt = memberRegt;
 	}
 
 
-	public void setMemberLeave(char memberLeave) {
-		this.memberLeave = memberLeave;
+	public char getMemberLockedt() {
+		return memberLockedt;
 	}
 
-	
+
+	public void setMemberLockedt(char memberLockedt) {
+		this.memberLockedt = memberLockedt;
+	}
+
+
+	public char getMemberLeavet() {
+		return memberLeavet;
+	}
+
+
+	public void setMemberLeavet(char memberLeavet) {
+		this.memberLeavet = memberLeavet;
+	}
+
+
 	
 	
 }
