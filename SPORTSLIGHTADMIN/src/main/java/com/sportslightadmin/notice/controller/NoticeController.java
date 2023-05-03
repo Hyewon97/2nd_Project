@@ -82,16 +82,29 @@ public class NoticeController {
 	 * }
 	 */
 
-	  @PutMapping("/admin/notice/update") public void updateExecute(NoticeDTO dto,
-	  HttpServletRequest request) throws IllegalStateException, IOException {
-	  noticeService.updateProcess(dto);
-	  
-	  }
+//	  @PutMapping("/admin/notice/update/{noticeNum}") public void updateExecute(NoticeDTO dto,
+//	  HttpServletRequest request) throws IllegalStateException, IOException {
+//	  noticeService.updateProcess(dto);
+//	  
+//	  }
+	
+	// 공지사항 수정
+	// 인트값만 넣으면 지정된 값이 바뀌긴 하는데 값을 넣으면 에러 발생됨
+//	@PostMapping("/admin/notice/update/{noticeNum}")
+//	public void updateExecute(@PathVariable("noticeNum") int noticeNum) {
+//		noticeService.updateProcess(noticeNum);
+//	}
+	
+	@PutMapping("/admin/notice/update")
+	public void updateExecute(NoticeDTO dto, HttpServletRequest request){
+		noticeService.updateProcess(dto);
+
+	}
 	  
 	// 삭제
-		@DeleteMapping("admin/notice/delete/{noticeNum}")
-		public void deleteExecute(@PathVariable("noticeNum") int num, HttpServletRequest request) {
-			noticeService.deleteProcess(num);
+		@DeleteMapping("/admin/notice/delete/{noticeNum}")
+		public void deleteExecute(@PathVariable("noticeNum") int noticeNum, HttpServletRequest request) {
+			noticeService.deleteProcess(noticeNum);
 		}
 	 
 

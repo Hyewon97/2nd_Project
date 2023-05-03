@@ -18,8 +18,4 @@ public interface MemberzDAO {
 	public void updateMemberLocked(int num); // 회원 잠금
 	public void updateMemberLeave(int num); // 회원 탈퇴
 	
-
-	
-	
-
 }

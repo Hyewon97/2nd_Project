@@ -13,6 +13,8 @@
 	<select id="memberzList" parameterType="MemberzPageDTO" resultType="MemberzDTO">
 		<![CDATA[ 
 		SELECT * FROM memberz
+		where membernum >=#{startRow} and membernum <=#{endRow}
+		
 		]]>
 	</select>
 	

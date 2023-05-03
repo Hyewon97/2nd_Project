@@ -55,10 +55,11 @@ public class MemberzController {
 	}
 	
 	
+	
 	// 회원 탈퇴 (정보 수정)
 	@PostMapping("/admin/member/list/update/{memberNum}")
-	public void updateMemberLeave(@RequestBody int memberNum) {
-		memberzService.memberLeaveProcess(memberNum);
+	public void updateMemberLeave(@PathVariable("memberNum") int memberNum) {
+	    memberzService.memberLeaveProcess(memberNum);
 	}
 
 }

@@ -21,7 +21,7 @@
 			FROM(SELECT b.*, m.adminProfile
 			FROM notice b, adminz m
 			WHERE b.adminNum=m.adminNum(+)
-			ORDER BY writeDate desc)a)b
+			ORDER BY noticeNum desc)a)b
 			WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
 		]]>
 	</select>
