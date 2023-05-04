@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.sportslightadmin.video.dao.VideoDAO">
+	<select id="count" resultType="int">
+		SELECT count(*) FROM video
+	</select>
+
+
+	<!--<resultMap type="VideoDTO" id="listSelect" autoMapping="true">
+		<association property="videoDTO" javaType="VideoDTO">
+			<result column="videoName" property="videoName" />
+		</association>
+	</resultMap>-->
+
+	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
+	<![CDATA[ 
+		SELECT * FROM video
+		where videoNum >=#{startRow} and videoNum <=#{endRow}
+		order by videoNum desc		
+		]]>
+	</select>
+
+	
+	
+
+</mapper>
+
+
+

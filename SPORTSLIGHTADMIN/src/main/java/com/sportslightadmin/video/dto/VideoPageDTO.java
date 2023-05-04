@@ -1,10 +1,10 @@
-package com.sportslightadmin.board.dto;
+package com.sportslightadmin.video.dto;
 
 import org.springframework.stereotype.Component;
 
 
-@Component
-public class BoardPageDTO {
+@Component("VideoPageDTO")
+public class VideoPageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
 	private int blockCount = 5; // 한 페이지에 보여줄 레코드 수
@@ -19,11 +19,11 @@ public class BoardPageDTO {
 	private String searchKey;
 	private String searchWord;
 
-	public BoardPageDTO() {
+	public VideoPageDTO() {
 
 	}
 
-	public BoardPageDTO(int currentPage, int totalCount) {
+	public VideoPageDTO(int currentPage, int totalCount) {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 		
@@ -52,7 +52,7 @@ public class BoardPageDTO {
 		number = totalCount - (this.currentPage - 1) * blockCount;
 	}
 
-	public BoardPageDTO(int currentPage, int totalCount, String searchKey, String searchWord) {
+	public VideoPageDTO(int currentPage, int totalCount, String searchKey, String searchWord) {
 		this(currentPage, totalCount);
 		this.searchKey = searchKey;
 		this.searchWord = searchWord;
