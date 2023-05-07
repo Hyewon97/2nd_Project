@@ -52,11 +52,16 @@ public class SecurityConfig {
 		http.apply(new MyCustomerFilter());
 
 		// 요청에 의한 인가 검사 시작
-		http.authorizeHttpRequests().antMatchers("/", "/images/**", "/login", "/admin/signup", 
-				 "/admin/withdraw/**" ,"/admin/notice/list/**", "/admin/member/list/**", "/admin/video/list/**")
+		/*
+		 * http.authorizeHttpRequests().antMatchers("/", "/images/**", "/login",
+		 * "/admin/signup", "/admin/withdraw/**" ,"/admin/notice/list/**",
+		 * "/admin/member/list/**", "/admin/video/list/**") .permitAll() // 로그인 없이 접근 허용
+		 * .anyRequest().authenticated();
+		 */// 그 외 모든 요청에 대해서 인증(로그인)이 되어야 허용
+		http.authorizeHttpRequests()
+				.antMatchers("/**")
 				.permitAll() // 로그인 없이 접근 허용
-				.anyRequest().authenticated(); // 그 외 모든 요청에 대해서 인증(로그인)이 되어야 허용
-
+				.anyRequest().authenticated();
 		return http.build();
 	}
 

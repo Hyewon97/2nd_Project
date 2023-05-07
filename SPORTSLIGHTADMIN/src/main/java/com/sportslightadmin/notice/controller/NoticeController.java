@@ -74,6 +74,7 @@ public class NoticeController {
 		return noticeService.contentProcess(noticeNum);
 	}
 
+	// 수정
 	@PutMapping("/admin/notice/update")
 	public void updateExecute(NoticeDTO dto, HttpServletRequest request){
 		noticeService.updateProcess(dto);

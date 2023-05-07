@@ -8,21 +8,32 @@
 	</select>
 
 
-	<!--<resultMap type="VideoDTO" id="listSelect" autoMapping="true">
-		<association property="videoDTO" javaType="VideoDTO">
-			<result column="videoName" property="videoName" />
-		</association>
-	</resultMap>-->
-
 	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
 	<![CDATA[ 
 		SELECT * FROM video
 		where videoNum >=#{startRow} and videoNum <=#{endRow}
-		order by videoNum desc		
 		]]>
 	</select>
 
+	<!--상세 페이지-->
+	<select id="videoContent" parameterType="int" resultType="VideoDTO">
+		SELECT * FROM video
+		where videoNum = #{videoNum}
+	</select>
+
+	<!--수정-->
+	<update id="update" parameterType="VideoDTO"> 
+		update video
+		set videoName= #{videoName, jdbcType=VARCHAR}, thumbnailUrl= #{thumbnailUrl, jdbcType=VARCHAR}, 
+		videoUrl=#{videoUrl, jdbcType=VARCHAR}, videoType=#{videoType}, teamNum1=#{teamNum1}, teamNum2=#{teamNum2}, seasonNum=#{seasonNum}
+		where videoNum =#{videoNum}
+	</update>
 	
+	<!--삭제-->
+	<delete id="delete" parameterType="int">
+		DELETE FROM video
+		WHERE videoNum=#{videoNum}
+	</delete>
 	
 
 </mapper>
