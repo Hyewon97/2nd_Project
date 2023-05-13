@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sportslightadmin.videoBoard.dao.VideoBoardDAO">
+	<select id="count" parameterType="int" resultType="int">
+		SELECT count(*) from videoBoard
+		where videonum = #{videoNum}
+		
+	</select>
+
+
+	<!-- 사용자 정보 가져오기-->
+<!--	<select id="videoBoardList" parameterType="videoBoardPageDTO" resultType="videoBoardDTO">
+		<![CDATA[ 
+		SELECT * FROM videoBoard
+		where videoNum = #{videoBoardDTO.videoNum}
+		order by videoBoardNum asc	
+		]]>
+	</select>-->
+	
+<!--	<select id="videoBoardList" parameterType="int" resultType="videoBoardDTO"> 
+		SELECT * FROM videoBoard
+		where videoNum = #{videoNum}
+		order by videoBoardNum asc	
+	</select>-->
+	
+	<select id="videoBoardList" parameterType="int" resultType="videoBoardDTO"> 
+		select * from(
+			select rownum num, n.* from(
+				select * from videoBoard
+				where videoNum = #{videoNum}
+				)n
+			)
+		where num between #{startRow} and #{endRow}
+	</select>
+	
+	<!--삭제-->
+	<delete id="delete" parameterType="int">
+		DELETE FROM videoBoard
+		WHERE videoBoardNum=#{videoBoardNum}
+	</delete>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+

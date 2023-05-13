@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.sportslightadmin.footballtalkReply.dao.FootballTalkReplyDAO">
+	<select id="count" parameterType="int" resultType="int">
+		SELECT count(*) from footballTalkReply
+		where talkNum = #{talkNum}
+	</select>
+	
+	
+	<select id="footballTalkReplyList" parameterType="int" resultType="footballtalkReplyDTO"> 
+		SELECT * FROM footballTalkReply
+		where talkNum = #{talkNum}
+	</select>
+	
+	<!--삭제-->
+	<delete id="delete" parameterType="int">
+		DELETE FROM footballTalkReply
+		WHERE talkReplyNum=#{talkReplyNum}
+	</delete>
+	
+	
+</mapper>

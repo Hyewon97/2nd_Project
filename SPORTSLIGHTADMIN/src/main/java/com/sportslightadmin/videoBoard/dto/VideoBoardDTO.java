@@ -3,6 +3,7 @@ package com.sportslightadmin.videoBoard.dto;
 import org.springframework.stereotype.Component;
 
 import com.sportslightadmin.memberz.dto.MemberzDTO;
+import com.sportslightadmin.video.dto.VideoPageDTO;
 
 @Component
 public class VideoBoardDTO {
@@ -10,7 +11,8 @@ public class VideoBoardDTO {
 	private int videoNum; //비디오 고유 번호
 	private int memberNum; 
 	private String videoReply; // 한줄 게시판 내용
-	private MemberzDTO memberzDTO;
+	//private MemberzDTO memberzDTO;
+
 	
 	public VideoBoardDTO() {
 		
@@ -48,13 +50,13 @@ public class VideoBoardDTO {
 		this.videoReply = videoReply;
 	}
 
-	public MemberzDTO getMemberzDTO() {
-		return memberzDTO;
-	}
-
-	public void setMemberzDTO(MemberzDTO memberzDTO) {
-		this.memberzDTO = memberzDTO;
-	}
+//	public MemberzDTO getMemberzDTO() {
+//		return memberzDTO;
+//	}
+//
+//	public void setMemberzDTO(MemberzDTO memberzDTO) {
+//		this.memberzDTO = memberzDTO;
+//	}
 	
 	
 

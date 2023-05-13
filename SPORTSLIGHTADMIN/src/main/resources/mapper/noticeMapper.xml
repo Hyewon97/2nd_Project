@@ -13,6 +13,7 @@
 			<result column="adminProfile" property="adminProfile" />
 		</association>
 	</resultMap>
+	
 
 	<select id="noticeList" parameterType="NoticePageDTO" resultMap="listSelect">
 	<![CDATA[ 

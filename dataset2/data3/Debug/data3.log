@@ -1,0 +1,3 @@
+﻿  소스.c
+C:\k_digital\Sportslightadmin\dataset2\data3\소스.c(32,7): warning C4101: 'buffer' :참조되지 않은 지역 변수입니다.
+  data3.vcxproj -> C:\k_digital\Sportslightadmin\dataset2\Debug\data3.exe

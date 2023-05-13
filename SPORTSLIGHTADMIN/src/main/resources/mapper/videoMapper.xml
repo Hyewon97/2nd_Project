@@ -8,12 +8,24 @@
 	</select>
 
 
-	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
+	<!--<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
 	<![CDATA[ 
 		SELECT * FROM video
 		where videoNum >=#{startRow} and videoNum <=#{endRow}
 		]]>
+	</select>-->
+	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
+	<![CDATA[ 
+		select * from(
+    		select rownum num, n.* from(
+        		select * from video order by videoNum asc
+       			 )n
+        	)
+		where num between #{startRow} and #{endRow}
+		]]>
 	</select>
+	
+	
 
 	<!--상세 페이지-->
 	<select id="videoContent" parameterType="int" resultType="VideoDTO">
