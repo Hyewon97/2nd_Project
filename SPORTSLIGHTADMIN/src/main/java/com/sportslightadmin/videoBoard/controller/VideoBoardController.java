@@ -22,7 +22,7 @@ import com.sportslightadmin.videoBoard.service.VideoBoardService;
 public class VideoBoardController {
 	
 	@Autowired
-	private VideoBoardService videoBaordService;
+	private VideoBoardService videoBoardService;
 	
 	@Autowired
 	private VideoBoardPageDTO pdto;
@@ -46,7 +46,7 @@ public class VideoBoardController {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("pv : " + pv.getCurrentPage()); // currentPage값 출력
 
-		int totalRecord = videoBaordService.countProcess(videoNum);
+		int totalRecord = videoBoardService.countProcess(videoNum);
 		// 갯수가 한 개 이상이면 페이징 처리를 해줌
 		// countProcess에서는 값이 제대로 들어감
 		
@@ -58,7 +58,7 @@ public class VideoBoardController {
 			this.pdto = new VideoBoardPageDTO(this.currentPage, videoNum);
 			pdto.setVideoNum(videoNum); // 비디오넘 값 넣어서 던져줌 // 준찬님의 도움  감사
 
-			map.put("aList", videoBaordService.videoBoardListProcess(this.pdto));
+			map.put("aList", videoBoardService.videoBoardListProcess(this.pdto));
 			map.put("pv", this.pdto);
 
 		}
@@ -68,7 +68,7 @@ public class VideoBoardController {
 	// 삭제
 	@DeleteMapping("admin/videoBoard/list/delete/{videoBoardNum}")
 	public void deleteExecute(@PathVariable("videoBoardNum") int videoBoardNum, HttpServletRequest request) {
-		videoBaordService.deleteProcess(videoBoardNum);
+		videoBoardService.deleteProcess(videoBoardNum);
 	}
 	
 	

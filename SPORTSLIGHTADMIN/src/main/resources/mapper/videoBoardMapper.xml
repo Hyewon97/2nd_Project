@@ -26,7 +26,9 @@
 		order by videoBoardNum asc	
 	</select>-->
 	
-	<select id="videoBoardList" parameterType="int" resultType="videoBoardDTO"> 
+	
+	
+	<!--<select id="videoBoardList" parameterType="int" resultType="videoBoardDTO"> 
 		select * from(
 			select rownum num, n.* from(
 				select * from videoBoard
@@ -34,7 +36,27 @@
 				)n
 			)
 		where num between #{startRow} and #{endRow}
+	</select>-->
+	
+	<resultMap type="VideoBoardDTO" id="listSelect" autoMapping="true">
+		<association property="memberzDTO" javaType="MemberzDTO">
+			<result column="memberProfile" property="memberProfile" />
+		</association>
+	</resultMap>
+
+	<select id="videoBoardList" parameterType="VideoBoardPageDTO" resultMap="listSelect">
+	<![CDATA[ 
+		
+		select b.* from(select rownum as rm, n.*
+         from(select b.*, m.memberProfile
+         from videoBoard b, memberz m
+         where b.membernum=m.membernum(+) and videoNum = #{videoNum}
+         order by videoNum asc)n)b
+		where b.rm between  #{startRow} and #{endRow}
+		]]>
 	</select>
+	
+	
 	
 	<!--삭제-->
 	<delete id="delete" parameterType="int">

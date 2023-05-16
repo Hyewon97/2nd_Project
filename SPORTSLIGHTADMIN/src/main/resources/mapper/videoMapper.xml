@@ -14,6 +14,8 @@
 		where videoNum >=#{startRow} and videoNum <=#{endRow}
 		]]>
 	</select>-->
+	
+	
 	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
 	<![CDATA[ 
 		select * from(
@@ -28,10 +30,26 @@
 	
 
 	<!--상세 페이지-->
-	<select id="videoContent" parameterType="int" resultType="VideoDTO">
+	<!--<select id="videoContent" parameterType="int" resultType="VideoDTO">
 		SELECT * FROM video
 		where videoNum = #{videoNum}
+	</select>-->
+	
+	<!-- 상세 페이지 -->
+	<resultMap type="VideoDTO" id="listSelect" autoMapping="true">
+		<association property="teamDTO" javaType="TeamDTO">
+			<result column="teamName" property="teamName" />
+		</association>
+	</resultMap>
+	
+	<select id="videoContent" parameterType="int" resultMap="listSelect">
+	<![CDATA[ 
+	SELECT b.*, m.teamName AS team1, z.teamName AS team2
+	FROM video b, team m, team z
+	WHERE b.teamNum1 = m.teamNum(+) AND b.teamNum2 = z.teamNum(+) AND b.videonum = #{videoNum}
+	]]>
 	</select>
+	
 
 	<!--수정-->
 	<update id="update" parameterType="VideoDTO"> 

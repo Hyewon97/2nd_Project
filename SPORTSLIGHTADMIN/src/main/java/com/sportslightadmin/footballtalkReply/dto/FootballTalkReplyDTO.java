@@ -4,11 +4,14 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.sportslightadmin.memberz.dto.MemberzDTO;
+
 @Component
 public class FootballTalkReplyDTO {
 	private int talkReplyNum, talkNum, memberNum;
 	private String talkReplyContent;
 	private Date regDate;
+	private MemberzDTO memberzDTO;
 	
 	
 	public FootballTalkReplyDTO() {
@@ -47,6 +50,14 @@ public class FootballTalkReplyDTO {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	public MemberzDTO getMemberzDTO() {
+		return memberzDTO;
+	}
+
+	public void setMemberzDTO(MemberzDTO memberzDTO) {
+		this.memberzDTO = memberzDTO;
 	}
 	
 	

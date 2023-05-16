@@ -4,18 +4,19 @@
 #include <time.h>
 
 // 상수 선언
-#define dataNum 233 // 데이터의 갯수
+#define dataNum 233 // 영상 데이터의 갯수
 #define userNum 30 // 유저 수
-#define fakeNum 20 // 가짜 데이터 수
+// #define fakeNum 20 // 가짜 데이터 수
+#define saveNum 40
+#define fakeMax 140
 
 // 함수 선언
 void randomIndex(int arr[]) { // 입력 인자는 int 배열s
 	int i, j;
 
-	srand((unsigned int)time(NULL));
 
-	for (i = 0; i < 40; i++) { 
-		arr[i] = rand() % 45;  //0부터 44까지 숫자를 이용하기 위함. 함수 인덱스 값으로 넣기 위해 범위를 0부터 시작한다.
+	for (i = 0; i < saveNum+ fakeMax; i++) {  // 가짜 데이터의 최대갯수
+		arr[i] = rand() % (saveNum+fakeMax);  //0부터 44까지 숫자를 이용하기 위함. 함수 인덱스 값으로 넣기 위해 범위를 0부터 시작한다.
 
 		for (j = 0; j < i; j++) {  //로또에서 중복은 없으므로 중복 제거를 위한 포문
 			if (arr[i] == arr[j]) {
@@ -67,28 +68,32 @@ int main() {
 
 
 	// 가짜 데이터 만드는 함수
-	int fakeData[fakeNum]; // 가짜 데이터 변수 초기화
+	//int fakeData[fakeNum]; // 가짜 데이터 변수 초기화
 
-	for (i = 0; i < fakeNum; i++) { // 가짜 데이터 변수만큼 임의 숫자 넣기.. 아마 나중에 중복 없는 랜덤 값으로 값 받아러 처리하는 부분 필요할지도
-		fakeData[i] = i + 200;
-	}
+	//for (i = 0; i < fakeNum; i++) { // 가짜 데이터 변수만큼 임의 숫자 넣기.. 아마 나중에 중복 없는 랜덤 값으로 값 받아러 처리하는 부분 필요할지도
+	//	fakeData[i] = i + 200;
+	//}
 
 	// 영상 갯수를 랜덤 함수에 던져서 랜덤 함수 인덱스 배열을 만듦
 	// main문에서 인덱스 번호를 받을 배열 생성
-	int tempindexNum1[40];
+	int tempindexNum1[saveNum+fakeMax];
 
 	/* 데이터 작성 후 txt 파일로 내보내기 */
 	FILE* fp2 = fopen("savetest.txt", "w"); // 저장 될 txt 이름 설정, 쓰기 모드 w
 	
-	// 분석용 데이터 넣기
-	//for (j = 0; j < userNum; j++) { // 사용자 숫자
-	for (j = 0; j < 2; j++) { // 사용자 숫자
+	srand((unsigned int)time(NULL)); // 시드 값 초기화
 
-		rantemp = 10;// +(rand() % 10 + 1); // 분석용 데이터 갯수를 난수로  설정 (범위 1 ~ 10), 전체 갯수 범위 30 ~40개로 설정
-		rantemp2 = 5 + (rand() % 2 + 1); // 가짜 데이터 갯수를 난수로 설정 (범위 1 ~ 3)
+	// 분석용 데이터 넣기
+	for (j = 0; j < userNum; j++) { // 사용자 숫자
+
+		rantemp = saveNum +(rand() % fakeMax + 1); // 분석용 데이터 갯수를 난수로  설정 (범위 1 ~ 10), 전체 갯수 범위 30 ~40개로 설정
+		//rantemp2 = 5 + (rand() % 2 + 1); // 가짜 데이터 갯수를 난수로 설정 (범위 1 ~ 3)
 
 		printf("분석용 데이터 갯수 : %d\n", rantemp);
 		randomIndex(tempindexNum1); // 랜덤 값 받기
+
+		// 같은 데이터를 저장하는 부분
+
 
 		// 분석용 데이터 저장하는 반복문
 		for (i = 0; i < rantemp; i++) { // 영상 저장 갯수
@@ -111,6 +116,7 @@ int main() {
 		}
 
 		// 가짜 데이터 저장하는 반복문
+		/*
 		for (i = 0; i < rantemp2; i++) { // 
 			// 사용자 번호 저장
 			sprintf(buffer, "%d", temp);  // int형 값을 문자열로 변환
@@ -128,6 +134,7 @@ int main() {
 			fputs(buffer, fp2);             // 파일에 문자열 쓰기
 			fputs("\n", fp2);              // 줄바꿈 문자 쓰기
 		}
+		*/
 
 		temp++; // 사용자 번호 증가
 	}
@@ -137,10 +144,6 @@ int main() {
 	fclose(fp2); //파일 포인터 닫기
 
 	printf("데이터 저장 완료\n"); // 데이터 전달 확인용 메세지
-
-
-	// 케이스 별 영상 번호 담은 배열 저장
-	// 텍스트 파일에서 프로그램에서 값 읽어서 int 배열에 넘겨주는 방법
 
 	return 0;
 }

@@ -10,9 +10,27 @@
 	</select>
 	
 	
-	<select id="footballTalkReplyList" parameterType="int" resultType="footballtalkReplyDTO"> 
+	<!--<select id="footballTalkReplyList" parameterType="int" resultType="footballtalkReplyDTO"> 
 		SELECT * FROM footballTalkReply
 		where talkNum = #{talkNum}
+	</select>-->
+	
+	<resultMap type="FootballTalkReplyDTO" id="listSelect" autoMapping="true">
+		<association property="memberzDTO" javaType="MemberzDTO">
+			<result column="memberProfile" property="memberProfile" />
+		</association>
+	</resultMap>
+
+	<select id="footballTalkReplyList" parameterType="FootballTalkReplyPageDTO" resultMap="listSelect">
+	<![CDATA[ 
+		
+		select b.* from(select rownum as rm, n.*
+         from(select b.*, m.memberProfile
+         from footballTalkReply b, memberz m
+         where b.membernum=m.membernum(+) and talkNum = #{talkNum}
+         order by talkReplyNum asc)n)b
+		where b.rm between #{startRow} and #{endRow}
+		]]>
 	</select>
 	
 	<!--삭제-->
@@ -23,3 +41,14 @@
 	
 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ package com.sportslightadmin.video.dto;
 
 import org.springframework.stereotype.Component;
 
+import com.sportslightadmin.team.dto.TeamDTO;
 import com.sportslightadmin.videoBoard.dto.VideoBoardDTO;
 
 @Component
@@ -12,9 +13,29 @@ public class VideoDTO {
 	private int teamNum1, teamNum2;
 	private int leagueNum, seasonNum;
 	private VideoBoardDTO videoBoardDTO;
+	private TeamDTO teamDTO;
+	private String teamName1, teamName2;
+
+	
 	
 	public VideoDTO() {
 
+	}
+
+	public String getTeamName1() {
+		return teamName1;
+	}
+
+	public void setTeamName1(String teamName1) {
+		this.teamName1 = teamName1;
+	}
+
+	public String getTeamName2() {
+		return teamName2;
+	}
+
+	public void setTeamName2(String teamName2) {
+		this.teamName2 = teamName2;
 	}
 
 	public int getVideoNum() {
@@ -103,6 +124,14 @@ public class VideoDTO {
 
 	public void setVideoBoardDTO(VideoBoardDTO videoBoardDTO) {
 		this.videoBoardDTO = videoBoardDTO;
+	}
+
+	public TeamDTO getTeamDTO() {
+		return teamDTO;
+	}
+
+	public void setTeamDTO(TeamDTO teamDTO) {
+		this.teamDTO = teamDTO;
 	}
 	
 	
