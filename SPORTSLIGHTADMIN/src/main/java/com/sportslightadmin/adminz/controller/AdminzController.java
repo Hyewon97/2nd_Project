@@ -29,10 +29,7 @@ public class AdminzController {
 	@Autowired
 	private AdminzService adminzService;
 
-	// 암호화 설정
-	// BCryptPasswordEncoder를 오토 와이어를 사용하려면 어딘가에는 선언을 해야 함. 그래야 오류가 안뜬다.
-	// 환경설정에서 선언이 되어 있어야 한다.
-	// 환경설정 할 수 있는 클래스를 만들고, 환경설정을 할거라고 선언을 하면 된다.
+	
 	// com.example.shop.security.config > SecurityConfig
 	@Autowired
 	private BCryptPasswordEncoder encodePassword;
