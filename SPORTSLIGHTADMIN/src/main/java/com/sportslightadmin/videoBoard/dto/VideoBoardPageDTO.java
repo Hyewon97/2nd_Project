@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 public class VideoBoardPageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
-	private int blockCount = 20; // 한 페이지에 보여줄 레코드 수
-	private int blockPage = 3; // 한 블록에 보여줄 페이지 수
+	private int blockCount = 10; // 한 페이지에 보여줄 레코드 수
+	private int blockPage = 50; // 한 블록에 보여줄 페이지 수
 	private int totalPage; // 총 페이지수
 	private int startRow; // 시작 레코드 번호
 	private int endRow; // 끝 레코드 번호
@@ -84,8 +84,7 @@ public class VideoBoardPageDTO {
 	}
 
 	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage; // 파라미터를 넘길때 일므을 같게 해야지 넘겨주는 파라미터 값을 받을 수 있다?
-		// 약간 뭐랄까 페이지 출력할때 num을 받아오기 위해서 사용하는듯 싶음.
+		this.currentPage = currentPage; 
 	}
 
 	public int getTotalCount() {

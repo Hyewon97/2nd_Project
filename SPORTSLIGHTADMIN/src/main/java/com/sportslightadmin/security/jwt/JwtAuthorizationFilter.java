@@ -31,12 +31,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("인가가 필요한 주소 요청이 실행되는 메소드 : doFilterInternal()"); // 주석
-
+		
 		// 1. 권한이나 인증이 필요한 요청 전달
 		String jwtHeader = request.getHeader("Authorization"); // Header에 들어 있는 Authorization을 호출
-		System.out.println("jwtHeader :" + jwtHeader); // 주석
-
+		
 		// 2. Header 확인
 		if (jwtHeader == null || !jwtHeader.startsWith("Bearer")) {
 			chain.doFilter(request, response);
@@ -47,8 +45,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 		String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
 		String username = JWT.require(Algorithm.HMAC512("mySecurityCos")).build().verify(jwtToken)
 				.getClaim("adminEmail").asString();
-		System.out.println("username:" + username); // 주석
-
+		
 		// 서명이 정상적으로 처리되었으면
 		if (username != null) {
 			// spring security가 수행해주는 권한 처리를 위해 아래와 같이 토큰을 만들어 Authentication객체를 강제로 만들고 세션에

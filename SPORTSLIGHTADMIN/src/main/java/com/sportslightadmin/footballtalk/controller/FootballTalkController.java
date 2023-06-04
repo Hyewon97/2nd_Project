@@ -36,11 +36,9 @@ public class FootballTalkController {
 	@GetMapping("/admin/footballTalk/list/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, FootballTalkPageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("pv : " + pv.getCurrentPage()); // currentPage값 출력
 
 		int totalRecord = footballTalkService.countProcess();
 		
-		System.out.println(totalRecord);
 
 		// 갯수가 한 개 이상이면 페이징 처리를 해줌
 		if (totalRecord >= 1) {

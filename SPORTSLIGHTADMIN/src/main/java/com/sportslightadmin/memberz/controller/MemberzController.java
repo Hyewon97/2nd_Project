@@ -37,7 +37,6 @@ public class MemberzController {
 	@GetMapping("/admin/member/list/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, MemberzPageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("pv : " + pv.getCurrentPage()); // currentPage값 출력
 
 		int totalRecord = memberzService.countProcess();
 

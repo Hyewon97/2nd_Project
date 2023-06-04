@@ -25,7 +25,7 @@ public class AdminzDTO {
 		this.authRole = authRole;
 	}
 
-	// 게터, 세터
+	// 게터 세터
 	
 	public String getAdminEmail() {
 		return adminEmail;

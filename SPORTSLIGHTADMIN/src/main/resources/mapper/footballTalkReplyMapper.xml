@@ -10,11 +10,6 @@
 	</select>
 	
 	
-	<!--<select id="footballTalkReplyList" parameterType="int" resultType="footballtalkReplyDTO"> 
-		SELECT * FROM footballTalkReply
-		where talkNum = #{talkNum}
-	</select>-->
-	
 	<resultMap type="FootballTalkReplyDTO" id="listSelect" autoMapping="true">
 		<association property="memberzDTO" javaType="MemberzDTO">
 			<result column="memberProfile" property="memberProfile" />

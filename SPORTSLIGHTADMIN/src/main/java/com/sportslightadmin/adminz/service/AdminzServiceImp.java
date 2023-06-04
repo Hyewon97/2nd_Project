@@ -22,7 +22,7 @@ public class AdminzServiceImp implements AdminzService{
 
 	@Override
 	public AuthInfo addAdminProcess(AdminzDTO dto) {
-		// 회원가입 후 바로 로그인 처리
+		// 회원가입
 		AdminzDao.insertAdmin(dto);
 		return new AuthInfo(dto.getAdminEmail(), dto.getAdminProfile(), dto.getAdminPass());
 	}
@@ -31,12 +31,11 @@ public class AdminzServiceImp implements AdminzService{
 	public AuthInfo loginProcess(AdminzDTO dto) {
 		AdminzDTO admin= AdminzDao.selectByEmail(dto.getAdminEmail());
 		if(admin==null){// 관리자가 아닐 경우
-			 System.out.println("관리자 아님"); // 주석
+			
 			throw new WrongEmailPasswordException();
 		}
 		if(!admin.matchPassword(dto.getAdminPass()))
 		{
-			 System.out.println("비밀번호 틀림"); // 주석
 			throw new WrongEmailPasswordException();
 		}
 		return new AuthInfo(admin.getAdminEmail(), admin.getAdminProfile(), admin.getAdminPass());

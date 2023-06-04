@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 public class FootballTalkReplyPageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
-	private int blockCount = 10; // 한 페이지에 보여줄 레코드 수
-	private int blockPage = 3; // 한 블록에 보여줄 페이지 수
+	private int blockCount = 50; // 한 페이지에 보여줄 레코드 수
+	private int blockPage = 1; // 한 블록에 보여줄 페이지 수
 	private int totalPage; // 총 페이지수
 	private int startRow; // 시작 레코드 번호
 	private int endRow; // 끝 레코드 번호
 	private int startPage; // 한 블록의 시작 페이지 번호
 	private int endPage; // 한 블록의 끝 페이지 번호
 	private int number;
-	private int talkNum; // 없어도 되는 변수일 것 같긴 함,, 일단 두고 나중에 수정해야할듯
+	private int talkNum;  
 
 	
 
@@ -26,7 +26,7 @@ public class FootballTalkReplyPageDTO {
 	
 
 	
-	// 나중에 확인하고 삭제해야 하는 부분
+
 	public int getTalkNum() {
 		return talkNum;
 	}
@@ -34,7 +34,7 @@ public class FootballTalkReplyPageDTO {
 	public void setTalkNum(int talkNum) {
 		this.talkNum = talkNum;
 	}
-	////////////////////////////////////////
+
 	
 
 	
@@ -79,8 +79,7 @@ public class FootballTalkReplyPageDTO {
 	}
 
 	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage; // 파라미터를 넘길때 일므을 같게 해야지 넘겨주는 파라미터 값을 받을 수 있다?
-		// 약간 뭐랄까 페이지 출력할때 num을 받아오기 위해서 사용하는듯 싶음.
+		this.currentPage = currentPage; 
 	}
 
 	public int getTotalCount() {

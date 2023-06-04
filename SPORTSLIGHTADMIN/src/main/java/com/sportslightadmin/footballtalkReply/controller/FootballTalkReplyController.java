@@ -38,11 +38,9 @@ public class FootballTalkReplyController {
 			@PathVariable("talkNum") int talkNum, FootballTalkReplyPageDTO pv) {
 		
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("pv : " + pv.getCurrentPage());
 		
 		int totalRecord = footballtalkReplyService.countProcess(talkNum);
 		
-		System.out.println("totalRecord : " + totalRecord); // 데이터 확인
 		
 		if (totalRecord >= 1) {
 			this.currentPage = currentPage; // currentPage에 1 할당

@@ -11,7 +11,7 @@ import com.sportslightadmin.footballtalkReply.dto.FootballTalkReplyPageDTO;
 @Mapper
 @Repository
 public interface FootballTalkReplyDAO {
-	public int count(int replyNum); // 페이징 처리를 위한 카운트면 변수명을 talkReplyNum이 아니라 그냥 num으로 해도 되지 않을까
+	public int count(int replyNum); 
 	public List<FootballTalkReplyDTO> footballTalkReplyList(FootballTalkReplyPageDTO pv);
 	public void delete(int num);
 

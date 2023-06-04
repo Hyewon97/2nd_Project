@@ -8,13 +8,6 @@
 	</select>
 
 
-	<!--<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
-	<![CDATA[ 
-		SELECT * FROM video
-		where videoNum >=#{startRow} and videoNum <=#{endRow}
-		]]>
-	</select>-->
-	
 	
 	<select id="videoList" parameterType="VideoPageDTO" resultType="VideoDTO">
 	<![CDATA[ 
@@ -28,12 +21,6 @@
 	</select>
 	
 	
-
-	<!--상세 페이지-->
-	<!--<select id="videoContent" parameterType="int" resultType="VideoDTO">
-		SELECT * FROM video
-		where videoNum = #{videoNum}
-	</select>-->
 	
 	<!-- 상세 페이지 -->
 	<resultMap type="VideoDTO" id="listSelect" autoMapping="true">
@@ -55,7 +42,7 @@
 	<update id="update" parameterType="VideoDTO"> 
 		update video
 		set videoName= #{videoName, jdbcType=VARCHAR}, thumbnailUrl= #{thumbnailUrl, jdbcType=VARCHAR}, 
-		videoUrl=#{videoUrl, jdbcType=VARCHAR}, videoType=#{videoType}, teamNum1=#{teamNum1}, teamNum2=#{teamNum2}, seasonNum=#{seasonNum}
+		videoUrl=#{videoUrl, jdbcType=VARCHAR}, videoType=#{videoType}, teamNum1=#{teamNum1}, teamNum2=#{teamNum2}, leagueNum=#{leagueNum}
 		where videoNum =#{videoNum}
 	</update>
 	

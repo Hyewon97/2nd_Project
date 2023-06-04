@@ -35,29 +35,24 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		this.authManager = authManager;
 	}
 
-	// http://localhost:8090/login 요청을 하면 실행되는 함수 // 주석
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-		System.out.println("JwtAuthenticationFIlter => login 요청 처리를 시작함"); // 주석
+
 
 		try {
 			ObjectMapper om = new ObjectMapper();
-			// 값을 읽어와서 저장을 함(저장 위치 User.class// 아이디, 비번, 게터 세터가 있어야 함).
-			// user 사진 부분 구현임 ppt 11 부분
+			// 값을 읽어와서 저장을 함
 			AdminzDTO admin = om.readValue(request.getInputStream(), AdminzDTO.class);
-			System.out.printf("관리자Email : %s 관리자Pass:%s\n 관리자 고유번호adminNum:%d\n", admin.getAdminEmail(), admin.getAdminPass(), admin.getAdminNum()); // 주석 // 저장소
-
+			
 			// 토큰 생성
 			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 					admin.getAdminEmail(), admin.getAdminPass() );
 
 			Authentication authentication = authManager.authenticate(authenticationToken);
-			System.out.println("authentication : " + authentication.getPrincipal()); // 주석 토큰 확인?
-
+			
 			PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-			System.out.printf("로그인 완료됨(인증) %s %s\n", principalDetails.getUsername(), principalDetails.getPassword()); // 주석
-
+			
 			return authentication;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -70,8 +65,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		System.out.println("successfulAutentication 실행됨"); // 주석
-
+	
 		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 		String jwtToken = JWT.create().withSubject("mycors")
 				.withExpiresAt(new Date(System.currentTimeMillis() + (60 * 1000 * 60 * 1L))) // 만료시간 3분
@@ -81,7 +75,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withClaim("adminNum", principalDetails.getAdminzDTO().getAdminNum()) // 관리자 고유 번호 저장소 
 				.sign(Algorithm.HMAC512("mySecurityCos"));
 
-		System.out.println("jwtTOken" + jwtToken); // 주석
+	
 
 		// response 응답 헤더에 jwt 추가해서 보냄
 		response.addHeader("Authorization", "Bearer " + jwtToken);
@@ -101,7 +95,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
-		System.out.println("unsuccess"); // 주석
+	
 		response.setStatus(HttpStatus.UNAUTHORIZED.value());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		Map<String, Object> body = new LinkedHashMap<>();

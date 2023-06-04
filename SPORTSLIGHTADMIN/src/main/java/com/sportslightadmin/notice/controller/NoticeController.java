@@ -43,7 +43,6 @@ public class NoticeController {
 	@GetMapping("/admin/notice/list/{currentPage}") // 페이지를 호출할 때,
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, NoticePageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("pv : " + pv.getCurrentPage()); // currentPage값 출력
 
 		int totalRecord = noticeService.countProcess();
 
@@ -70,7 +69,6 @@ public class NoticeController {
 	// 상세 페이지
 	@GetMapping("/admin/notice/view/{noticeNum}")
 	public NoticeDTO viewExecute(@PathVariable("noticeNum") int noticeNum) {
-		System.out.println("noticeNum 값 :" + noticeNum); // 주석 num 확인
 		return noticeService.contentProcess(noticeNum);
 	}
 

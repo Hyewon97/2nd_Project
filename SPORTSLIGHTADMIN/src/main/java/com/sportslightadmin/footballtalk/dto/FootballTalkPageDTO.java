@@ -63,8 +63,8 @@ public class FootballTalkPageDTO {
 	}
 
 	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage; // 파라미터를 넘길때 일므을 같게 해야지 넘겨주는 파라미터 값을 받을 수 있다?
-		// 약간 뭐랄까 페이지 출력할때 num을 받아오기 위해서 사용하는듯 싶음.
+		this.currentPage = currentPage;
+	
 	}
 
 	public int getTotalCount() {

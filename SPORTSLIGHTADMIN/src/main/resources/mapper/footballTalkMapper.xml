@@ -5,14 +5,9 @@
 <mapper namespace="com.sportslightadmin.footballtalk.dao.FootballTalkDAO">
 	<select id="count" resultType="int">
 		SELECT count(*) FROM footballTalk
+		
 	</select>
 
-
-<!--select * from(
-			select rownum num, n.*from(
-				select * from footballTalk order by talkNum asc
-				)n
-			)-->
 
 	<resultMap type="FootballTalkDTO" id="listSelect" autoMapping="true">
 		<association property="memberzDTO" javaType="MemberzDTO">
@@ -27,8 +22,9 @@
          from(select b.*, m.memberProfile
          from footballTalk b, memberz m
          where b.membernum=m.membernum(+)
-         order by talkNum asc)n)b
+         order by talkNum desc)n)b
 		where b.rm between #{startRow} and #{endRow}
+		
 		]]>
 	</select>
 	<!--order by leagueNum asc-->

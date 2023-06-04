@@ -54,8 +54,8 @@ public class SecurityConfig {
 		// 요청에 의한 인가 검사 시작
 		
 		  http.authorizeHttpRequests().antMatchers("/", "/images/**", "/login",
-		 "/admin/signup", "/admin/withdraw/**" ,"/admin/notice/list/**",
-		  "/admin/member/list/**", "/admin/video/list/**", "/admin/footballTalk/list/**", 
+		 "/admin/signup", "/admin/withdraw/**" ,"/admin/notice/**",
+		  "/admin/member/list/**", "/admin/video/**", "/admin/footballTalk/**", 
 		  "/admin/videoBoard/list/**","/admin/footballTalkReply/list/**") .permitAll() // 로그인 없이 접근 허용
 		  .anyRequest().authenticated();
 		 // 그 외 모든 요청에 대해서 인증(로그인)이 되어야 허용

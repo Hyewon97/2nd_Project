@@ -40,7 +40,7 @@ public class VideoController {
 	@GetMapping("/admin/video/list/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, VideoPageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("pv : " + pv.getCurrentPage()); // currentPage값 출력
+		
 
 		int totalRecord = videoService.countProcess();
 
@@ -61,7 +61,6 @@ public class VideoController {
 	// 비디오 상세페이지
 	@GetMapping("/admin/video/view/{videoNum}")
 	public VideoDTO viewExecute(@PathVariable("videoNum") int videoNum) {
-		System.out.println("videoNum 값 :" + videoNum); // 주석 num 확인
 		return videoService.videoContentProcess(videoNum);
 	}
 
